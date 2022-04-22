@@ -1,7 +1,5 @@
 package hu.bme.mit.spaceship;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.util.Random;
 
 /**
@@ -16,7 +14,7 @@ public class TorpedoStore {
 
   private int torpedoCount = 0;
 
-  private Random generator = getRandomGenerator();
+  private Random generator = new Random();
 
   public TorpedoStore(int numberOfTorpedos){
     this.torpedoCount = numberOfTorpedos;
@@ -29,14 +27,6 @@ public class TorpedoStore {
       } catch (NumberFormatException nfe) {
         FAILURE_RATE = 0.0;
       }
-    }
-  }
-
-  private Random getRandomGenerator() {
-    try{
-      return SecureRandom.getInstanceStrong();
-    } catch(NoSuchAlgorithmException e) {
-      throw new IllegalStateException("Couldn't get random generator!");
     }
   }
 
